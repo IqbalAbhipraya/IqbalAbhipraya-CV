@@ -1,0 +1,193 @@
+---
+// About.astro — About + Contact combined section
+// ─────────────────────────────────────────────────────────────────────────────
+// Update the contact links below with your real information.
+const contact = {
+  email:    'abhipraya3105@gmail.com',
+  linkedin: 'https://linkedin.com/in/muhammad-iqbal-abhipraya-75027a2a2',   
+  github:   'https://github.com/IqbalAbhipraya',
+  resume:   '/resume.pdf',
+};
+---
+
+<section id="about" aria-labelledby="about-heading">
+  <div class="section-wrap about-inner">
+
+    <div class="about-grid">
+
+      <!-- Left: copy ────────────────────────────────────────── -->
+      <div class="about-left reveal-parent reveal">
+        <span class="eyebrow reveal-child" style="transition-delay: 0s">About Me</span>
+        <h2 id="about-heading" class="about-title reveal-child" style="transition-delay: 0.1s">
+          More About My Self.
+        </h2>
+
+        <div class="about-body">
+          <p class="reveal-child" style="transition-delay: 0.25s">
+            I’m an Information Systems student at Telkom University who loves the engineering side 
+            of tech, specifically how software interacts with databases to solve real problems. 
+            My development stack includes Python, Java, Express.js, Next.js, and Laravel, 
+            and I spend a lot of my time working through the logic of relational databases like MySQL and PostgreSQL. 
+            For me, the most satisfying part of a project is choosing the right tools and seeing them 
+            through from design to deployment.
+          </p>
+          <p class="reveal-child" style="transition-delay: 0.51s">
+            I believe impactful technology isn't just about speed, it's about reliability, 
+            clear system modeling, and writing clean backend logic that scales properly.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: contact card ────────────────────────────────── -->
+      <div class="about-right reveal">
+        <div class="contact-card" id="contact">
+          <span class="contact-label">Connect with me</span>
+
+          <a
+            href={`mailto:${contact.email}`}
+            class="contact-email"
+            id="contact-email-link"
+          >
+            {contact.email}
+          </a>
+
+          <nav class="contact-links" aria-label="Social links">
+            <a
+              href={contact.linkedin}
+              class="contact-social skill-underline"
+              id="contact-linkedin"
+              target="_blank"
+              rel="noopener noreferrer"
+            >LinkedIn</a>
+            <a
+              href={contact.github}
+              class="contact-social skill-underline"
+              id="contact-github"
+              target="_blank"
+              rel="noopener noreferrer"
+            >GitHub</a>
+            <a
+              href={contact.resume}
+              class="contact-social skill-underline"
+              id="contact-resume"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Resume PDF</a>
+          </nav>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  #about {
+    padding: 96px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .about-inner { display: flex; flex-direction: column; gap: 0; }
+
+  /* ── Two-col grid ────────────────────────────── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 64px 96px;
+    align-items: end;
+  }
+
+  /* ── Left: copy ──────────────────────────────── */
+  .about-left { display: flex; flex-direction: column; gap: 0; }
+
+  .about-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 5vw, 60px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    line-height: 1.08;
+    margin-bottom: 48px;
+  }
+
+  .about-body {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 560px;
+  }
+  .about-body p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+  .about-body strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* ── Right: contact card ─────────────────────── */
+  .about-right { display: flex; flex-direction: column; justify-content: flex-end; }
+
+  .contact-card {
+    padding: 48px;
+    border: 1px solid var(--border);
+    background-color: var(--surface-low);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .contact-label {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 32px;
+  }
+
+  .contact-email {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 4vw, 44px);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    line-height: 1.1;
+    transition: color var(--transition);
+    margin-bottom: 40px;
+    word-break: break-all;
+  }
+  .contact-email:hover { color: var(--primary); }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  .contact-social {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    transition: color var(--transition);
+  }
+  .contact-social:hover { color: var(--primary); }
+
+  /* ── Responsive ──────────────────────────────── */
+  @media (max-width: 1024px) {
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .about-right { justify-content: flex-start; }
+  }
+  @media (max-width: 600px) {
+    #about { padding: 64px 0; }
+    .about-title { margin-bottom: 32px; }
+    .about-body p { font-size: 16px; }
+    .contact-card { padding: 28px; }
+    .contact-email { font-size: 22px; }
+  }
+</style>

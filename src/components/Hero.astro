@@ -1,0 +1,321 @@
+---
+// Hero.astro
+---
+
+<section id="hero" aria-label="Hero">
+  <div class="hero-wrap section-wrap">
+
+    <!-- SYS watermark -->
+    <div class="hero-watermark" aria-hidden="true">Portfolio</div>
+
+    <!-- Main headline -->
+    <h1 class="hero-headline hero-mask">
+      Muhammad Iqbal<br />
+      <em class="hero-accent">Abhipraya</em>
+    </h1>
+
+    <!-- Bottom grid: description + actions -->
+    <div class="hero-bottom">
+
+      <!-- Left info: status + credentials + socials -->
+      <!-- ─────────────────────────────────────────────
+           UPDATE: change the links, university, and class year below
+      ──────────────────────────────────────────────── -->
+      <div class="hero-info stagger-in" style="animation-delay: 0.35s" aria-label="Status and credentials">
+
+        <!-- Availability badge -->
+        <div class="hero-status">
+          <span class="hero-status-dot" aria-hidden="true"></span>
+          <span class="hero-status-text">Open to opportunities</span>
+        </div>
+
+        <div class="hero-info-rule" aria-hidden="true"></div>
+
+        <!-- Terminal Snippet -->
+        <div class="hero-terminal">
+          <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <pre class="terminal-code"><code><span class="token-punct">{"{"}</span>
+  <span class="token-key">"role"</span><span class="token-punct">:</span> <span class="token-string">"Software Eng"</span><span class="token-punct">,</span>
+  <span class="token-key">"focus"</span><span class="token-punct">:</span> <span class="token-punct">[</span>
+    <span class="token-string">"Backend Systems"</span><span class="token-punct">,</span>
+    <span class="token-string">"App/Web Development"</span><span class="token-punct">,</span>
+    <span class="token-string">"Data"</span>
+  <span class="token-punct">]</span><span class="token-punct">,</span>
+  <span class="token-key">"status"</span><span class="token-punct">:</span> <span class="token-string">"Building"</span>
+<span class="token-punct">{"}"}</span><span class="terminal-cursor"></span></code></pre>
+        </div>
+
+        <div class="hero-info-rule" aria-hidden="true"></div>
+
+        <!-- Social links -->
+        <nav class="hero-socials" aria-label="Social links">
+          <a href="https://github.com/IqbalAbhipraya" class="hero-social-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <span class="hero-social-sep" aria-hidden="true">/</span>
+          <a href="https://linkedin.com/in/muhammad-iqbal-abhipraya-75027a2a2" class="hero-social-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+
+      </div>
+
+      <!-- Right content -->
+      <div class="hero-content">
+        <p class="hero-desc stagger-in" style="animation-delay: 0.4s">
+          Information System student and Full-stack developer that also interested in cloud infra and system fundamentals.
+          I bridge the gap between architectural theory and scalable code.
+        </p>
+
+        <!-- Category labels -->
+        <div class="hero-labels stagger-in" style="animation-delay: 0.6s" aria-label="Specialisations">
+          <span class="skill-underline hero-label">Full-stack dev</span>
+          <span class="skill-underline hero-label">Cloud infra</span>
+          <span class="skill-underline hero-label">Networking</span>
+          <span class="skill-underline hero-label">Data</span>
+        </div>
+
+        <!-- CTAs -->
+        <div class="hero-ctas stagger-in" style="animation-delay: 0.8s">
+          <a href="#work"  class="btn-primary">View projects</a>
+          <a href="#about" class="btn-secondary">About me</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  #hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 180px;
+    padding-bottom: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-wrap { position: relative; }
+
+  /* ── Watermark ─────────────────────────────── */
+  .hero-watermark {
+    position: absolute;
+    top: -120px;
+    left: -48px;
+    font-family: var(--font-display);
+    font-size: 300px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-primary);
+    opacity: 0.03;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.04em;
+  }
+
+  /* ── Headline ──────────────────────────────── */
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    padding-bottom: 0.15em; /* room for italic descenders — prevents clip-path cutting them off */
+    position: relative;
+    z-index: 1;
+  }
+  .hero-accent {
+    color: var(--primary);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  /* ── Bottom two-col grid ───────────────────── */
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 48px;
+    align-items: end;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-spacer { /* intentionally empty */ }
+
+  /* ── Right content ─────────────────────────── */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .hero-desc {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  /* Category labels */
+  .hero-labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 40px;
+    margin-bottom: 48px;
+  }
+  .hero-label {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+
+  /* CTAs */
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+  }
+
+  /* ── Left info block ────────────────────────── */
+  .hero-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 48px;
+  }
+
+  /* Availability badge */
+  .hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-status-dot {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    flex-shrink: 0;
+    animation: status-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes status-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(111, 85, 37, 0.45); }
+    50%       { box-shadow: 0 0 0 7px rgba(111, 85, 37, 0); }
+  }
+  .hero-status-text {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+
+  /* Thin horizontal rule */
+  .hero-info-rule {
+    width: 100%;
+    height: 1px;
+    background-color: var(--border);
+  }
+  /* Terminal Snippet */
+  .hero-terminal {
+    background-color: var(--surface-low);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 12px;
+    box-shadow: 0 4px 12px rgba(30, 27, 23, 0.05);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hero-terminal:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary);
+    box-shadow: 0 8px 24px rgba(30, 27, 23, 0.12);
+  }
+  .terminal-header {
+    background-color: var(--surface-container);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 14px;
+    display: flex;
+    gap: 6px;
+  }
+  .terminal-header .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .dot.red { background-color: #ff5f56; }
+  .dot.yellow { background-color: #ffbd2e; }
+  .dot.green { background-color: #27c93f; }
+  .terminal-code {
+    padding: 20px;
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-primary);
+  }
+  .token-punct { color: var(--text-muted); }
+  .token-key { color: var(--primary); font-weight: 500; }
+  .token-string { color: #538150; }
+
+  .terminal-cursor {
+    display: inline-block;
+    width: 7px;
+    height: 14px;
+    background-color: var(--primary);
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+    margin-top: -2px;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Social links */
+  .hero-socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-social-link {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    transition: color var(--transition);
+  }
+  .hero-social-link:hover { color: var(--primary); }
+  .hero-social-sep {
+    font-size: 14px;
+    color: var(--border);
+    line-height: 1;
+  }
+
+  /* ── Responsive ────────────────────────────── */
+  @media (max-width: 900px) {
+    .hero-bottom {
+      grid-template-columns: 1fr;
+    }
+    .hero-info { display: none; }
+    .hero-headline { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 36px; }
+  }
+  @media (max-width: 600px) {
+    #hero { padding-top: 100px; }
+    .hero-desc { font-size: 16px; }
+    .hero-watermark { font-size: 160px; top: -60px; left: -20px; }
+  }
+</style>

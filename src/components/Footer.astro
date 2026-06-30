@@ -1,0 +1,79 @@
+---
+// Footer.astro — Minimal site footer matching the reference design
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-inner section-wrap">
+    <span class="footer-logo">Muhammad Iqbal Abhipraya</span>
+
+    <div class="footer-right">
+      <span class="footer-copy">{year} Portfolio</span>
+
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="https://linkedin.com/in/muhammad-iqbal-abhipraya-75027a2a2" class="footer-link">LinkedIn</a>
+        <a href="https://github.com/IqbalAbhipraya" class="footer-link">GitHub</a>
+        <a href="mailto:abhipraya3105@gmail.com" class="footer-link">Email</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    background-color: var(--bg);
+    padding: 56px 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+  }
+
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .footer-copy {
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+  }
+  .footer-link {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: color var(--transition);
+  }
+  .footer-link:hover { color: var(--primary); }
+
+  @media (max-width: 640px) {
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
+    .footer-right { flex-direction: column; gap: 16px; align-items: flex-start; }
+  }
+</style>

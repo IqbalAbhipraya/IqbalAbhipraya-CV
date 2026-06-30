@@ -1,0 +1,434 @@
+@import "tailwindcss";
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+
+/* ─── Design Tokens (Warm Editorial Palette) ─────────────── */
+:root {
+  --bg:                    #FAF8F3;
+  --bg-raised:             #FFFFFF;
+  --surface:               #fff8f3;
+  --surface-low:           #faf2eb;
+  --surface-container:     #f4ede5;
+  --surface-high:          #efe7e0;
+  --surface-highest:       #e9e1da;
+
+  --text-primary:          #1e1b17;
+  --text-secondary:        #5C594F;
+  --text-muted:            #8A8678;
+
+  --border:                #E5E1D5;
+  --border-strong:         #D8D4C8;
+  --outline-variant:       #d1c5b6;
+
+  --primary:               #6f5525;
+  --primary-container:     #8a6d3b;
+  --primary-hover:         #755a2a;
+  --primary-fixed:         #ffdeaa;
+
+  --font-display:          'Space Grotesk', sans-serif;
+  --font-body:             'Inter', sans-serif;
+
+  --transition:            0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:       0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ─── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { 
+  scroll-behavior: smooth; 
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
+
+a { color: inherit; text-decoration: none; }
+
+img { max-width: 100%; display: block; }
+
+::selection {
+  background-color: var(--primary-fixed);
+  color: var(--text-primary);
+}
+
+/* ─── Hero Animations ────────────────────────────────────── */
+@keyframes reveal-mask {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-mask {
+  clip-path: inset(0 100% 0 0);
+  animation: reveal-mask 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.stagger-in {
+  opacity: 0;
+  animation: fade-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+.stagger-delay-1 { animation-delay: 0.3s; }
+.stagger-delay-2 { animation-delay: 0.5s; }
+.stagger-delay-3 { animation-delay: 0.7s; }
+
+/* ─── Scroll Reveal ──────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger helpers for reveal children */
+.reveal-child {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal-parent.is-visible .reveal-child { opacity: 1; transform: translateY(0); }
+
+/* ─── Skill Underline Effect ─────────────────────────────── */
+.skill-underline {
+  position: relative;
+  cursor: default;
+}
+.skill-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transition: width 350ms ease-in-out;
+}
+.skill-underline:hover::after { width: 100%; }
+
+/* ─── Buttons ────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--text-primary);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 36px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition);
+}
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 36px;
+  border-radius: 100px;
+  border: 1px solid var(--outline-variant);
+  cursor: pointer;
+  transition: border-color var(--transition), background-color var(--transition), transform var(--transition);
+}
+.btn-secondary:hover {
+  border-color: var(--text-primary);
+  background-color: var(--surface-container);
+  transform: translateY(-2px);
+}
+
+/* ─── Project Cards ──────────────────────────────────────── */
+.project-card {
+  transition: border-color var(--transition), transform 0.3s ease;
+}
+.project-card:hover { border-color: var(--primary); }
+
+/* ─── Eyebrow ────────────────────────────────────────────── */
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--primary);
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* ─── Section containers ─────────────────────────────────── */
+.section-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+@media (max-width: 768px) {
+  .section-wrap { padding: 0 24px; }
+}
+
+/* ─── Custom Cursor ──────────────────────────────────────────── */
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--text-primary);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease,
+              transform 0.15s ease, opacity 0.25s ease;
+  will-change: left, top;
+}
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--primary);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.35s ease, height 0.35s ease,
+              border-color 0.35s ease, opacity 0.35s ease,
+              background-color 0.35s ease;
+  opacity: 0.55;
+  will-change: left, top;
+}
+
+/* Hover — ring carries the accent state, dot stays neutral */
+.cursor-ring.cursor-hover {
+  width: 48px;
+  height: 48px;
+  opacity: 0.4;
+  background-color: rgba(111, 85, 37, 0.06);
+  animation: cursor-pulse 1.8s ease-in-out infinite;
+}
+.cursor-dot.cursor-hover {
+  width: 8px;
+  height: 8px;
+}
+
+@keyframes cursor-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50%      { transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* Active / click — tight snap, no animation delay */
+.cursor-dot.cursor-click {
+  width: 8px;
+  height: 8px;
+  transform: translate(-50%, -50%) scale(0.85);
+}
+.cursor-ring.cursor-click {
+  width: 26px;
+  height: 26px;
+  opacity: 0.7;
+  animation: none;
+  transition: width 0.15s ease, height 0.15s ease, opacity 0.15s ease;
+}
+
+/* Hide cursor on touch */
+@media (hover: none) {
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* ─── Scroll Progress Bar ────────────────────────────────────── */
+/* (removed — replaced by .scroll-nav sidebar) */
+
+/* ─── Scroll Sidebar Nav ─────────────────────────────────────── */
+.scroll-nav {
+  position: fixed;
+  right: 36px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: none; /* pass-through; items re-enable it */
+}
+
+/* The vertical track line */
+.sn-track {
+  position: relative;
+  width: 2px;
+  height: 300px;
+  background-color: var(--border);
+  align-self: flex-end;
+}
+
+/* Gold fill that grows from the top */
+.sn-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 0;
+  background-color: var(--primary);
+  transition: height 0.12s linear;
+}
+
+/* Each section anchor item */
+.sn-item {
+  position: absolute;
+  right: -3.5px; /* centers 9px dot on 2px track: dot_r(4.5) - track_r(1) = 3.5 */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: auto;
+  transform: translateY(-50%);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Section dot */
+.sn-dot {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 2px solid var(--text-muted);
+  background-color: var(--bg);
+  transition: background-color 0.3s ease,
+              border-color     0.3s ease,
+              transform        0.3s ease,
+              box-shadow       0.3s ease;
+  flex-shrink: 0;
+}
+
+/* Section label — hidden by default, slides in on hover/active */
+.sn-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
+  pointer-events: none;
+}
+
+.sn-item:hover .sn-label,
+.sn-item.active .sn-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Active state */
+.sn-item.active .sn-dot {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  transform: scale(1.5);
+  box-shadow: 0 0 0 4px rgba(111, 85, 37, 0.15);
+}
+.sn-item.active .sn-label {
+  color: var(--primary);
+}
+
+/* Scroll percentage counter */
+.sn-pct {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-align: right;
+  pointer-events: none;
+  min-width: 28px;
+}
+
+/* Hide on narrow screens where it would overlap content */
+@media (max-width: 1100px) {
+  .scroll-nav { display: none; }
+}
+
+/* ─── Additional Keyframes ───────────────────────────────────── */
+@keyframes word-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes border-draw {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .hero-mask  { clip-path: none !important; }
+  .stagger-in { opacity: 1 !important; transform: none !important; }
+  .reveal     { opacity: 1 !important; transform: none !important; }
+  .reveal-child { opacity: 1 !important; transform: none !important; }
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* ─── Focus ──────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }

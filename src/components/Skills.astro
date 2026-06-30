@@ -1,0 +1,238 @@
+---
+// Skills.astro — Technical Focus Areas (bordered grid style)
+
+const columns = [
+  {
+    id:     'fullstack',
+    label:  'Full-stack',
+    icon:   'layers',
+    skills: [
+      'TypeScript / JavaScript',
+      'PHP / Laravel',
+      'React & Next.js',
+      'Node.js / Express',
+      'Python',
+      'PostgreSQL / MySQL / MongoDB',
+    ],
+  },
+  {
+    id:     'cloud',
+    label:  'Cloud / Infra',
+    icon:   'hub',
+    skills: [
+      'AWS (EC2, RDS)',
+      'Docker',
+      'CI/CD (GitHub Actions)',
+      'Nginx & Proxying',
+    ],
+  },
+  {
+    id:     'networking',
+    label:  'Networking / OS',
+    icon:   'router',
+    skills: [
+      'Linux (Ubuntu, Debian)',
+      'TCP/IP & Subnetting',
+      'Shell Scripting (Bash)',
+      'SSH & Secure Tunneling',
+    ],
+  },
+  {
+    id:     'data',
+    label:  'Data & Analytics',
+    icon:   'database',
+    skills: [
+      'Data Modeling',
+      'SQL Query Optimization',
+      'Python (Pandas, NumPy)',
+      'Data Pipelines / ETL',
+    ],
+  },
+];
+---
+
+<!-- Material Symbols -->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+/>
+
+<section id="skills" aria-labelledby="skills-heading">
+  <div class="section-wrap skills-inner">
+
+    <!-- Section header row -->
+    <header class="skills-header reveal">
+      <div>
+        <span class="eyebrow">Ecosystem</span>
+        <h2 id="skills-heading" class="skills-title">Technical focus areas</h2>
+      </div>
+      <p class="skills-aside">
+        Constant learning through documentation and hands-on implementation.
+      </p>
+    </header>
+
+    <!-- Bordered grid -->
+    <div class="skills-grid" role="list">
+      {columns.map((col) => (
+        <div class="skill-cell reveal-parent reveal" role="listitem" aria-labelledby={`skill-col-${col.id}`}>
+          <!-- Cell header -->
+          <div class="cell-header">
+            <h3 id={`skill-col-${col.id}`} class="cell-label">{col.label}</h3>
+            <span class="material-symbols-outlined cell-icon" aria-hidden="true">
+              {col.icon}
+            </span>
+          </div>
+
+          <!-- Skill list -->
+          <ul class="cell-list" aria-label={`${col.label} skills`}>
+            {col.skills.map((skill, i) => (
+              <li class="cell-item reveal-child" style={`transition-delay: ${0.1 + i * 0.08}s`}>
+                <span class="cell-dot" aria-hidden="true"></span>
+                {skill}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #skills {
+    padding: 96px 0;
+    background-color: rgba(244, 237, 229, 0.3);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skills-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  /* ── Header ─────────────────────────────────── */
+  .skills-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+  }
+  .skills-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+    line-height: 1.0;
+  }
+  .skills-aside {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-muted);
+    max-width: 220px;
+    text-align: right;
+    line-height: 1.55;
+    flex-shrink: 0;
+  }
+
+  /* ── Bordered grid container ────────────────── */
+  /* 
+    The outer wrapper has border-top and border-left.
+    Each cell then adds border-right and border-bottom,
+    which together form a complete bordered grid at any column count.
+  */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+  }
+
+  /* ── Individual cell ────────────────────────── */
+  .skill-cell {
+    padding: 48px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: background-color 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .skill-cell:hover {
+    background-color: var(--surface-low);
+  }
+
+  /* Cell header row */
+  .cell-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 48px;
+  }
+  .cell-label {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+  .cell-icon {
+    font-size: 22px;
+    color: var(--primary);
+    opacity: 0.4;
+    transition: opacity var(--transition);
+    flex-shrink: 0;
+  }
+  .skill-cell:hover .cell-icon {
+    opacity: 1;
+  }
+
+  /* ── Skill list ─────────────────────────────── */
+  .cell-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .cell-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+  .cell-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  /* ── Responsive ─────────────────────────────── */
+  @media (max-width: 1100px) {
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 900px) {
+    .skills-aside { display: none; }
+    .skills-header { align-items: flex-start; }
+    .skill-cell { padding: 32px; }
+  }
+  @media (max-width: 600px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    #skills { padding: 64px 0; }
+    .skills-inner { gap: 40px; }
+    .skill-cell { padding: 28px; }
+    .cell-header { margin-bottom: 32px; }
+  }
+</style>
